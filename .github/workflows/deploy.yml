@@ -31,13 +31,16 @@ jobs:
           BASE_PATH: '/sveltekit-ssg-example'
         run: |
           npm run build
-          touch build/.nojekyll
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v1
         with:
           # this should match the `pages` option in your adapter-static options
           path: 'build/'
+
+      - name: Final check
+        run: |
+          ls
 
   deploy:
     needs: build_site
